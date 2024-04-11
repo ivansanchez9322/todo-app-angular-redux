@@ -3,7 +3,8 @@ import { Todo } from '../models/todo.model';
 import { FormControl, Validators } from '@angular/forms';
 import { AppState } from '../../app.state';
 import { Store } from '@ngrx/store';
-import { toggle } from '../todo.actions';
+import * as actions from '../todo.actions';
+
 
 @Component({
   selector: 'app-todo-item',
@@ -15,7 +16,7 @@ export class TodoItemComponent implements OnInit {
   @Input() todo: Todo;
 
   //relacion con elemento html fisico
-  @ViewChild('inputFisico') elementRef: ElementRef;
+  @ViewChild('elementRef') elementRef: ElementRef;
 
   completado: FormControl;
   txtInput: FormControl;
@@ -31,12 +32,14 @@ export class TodoItemComponent implements OnInit {
   ngOnInit(): void {
 
     this.completado.valueChanges.subscribe(valor => {
-      this.store.dispatch( toggle({id: this.todo.id}));
+      this.store.dispatch(actions.toggle({ id: this.todo.id }));
     })
   }
 
   editar() {
     this.editando = true;
+    this.txtInput.setValue(this.todo.texto);
+
     setTimeout(() => {
       this.elementRef.nativeElement.select();
     }, 1)
@@ -44,5 +47,21 @@ export class TodoItemComponent implements OnInit {
 
   terminarEdicion() {
     this.editando = false;
+
+    if (this.txtInput.invalid) { return; }
+
+    if (this.txtInput.value === this.todo.texto) { return; }
+
+    this.store.dispatch(
+      actions.editar({
+        id: this.todo.id,
+        texto: this.txtInput.value
+      })
+    )
+
+  }
+
+  borrar(){
+    this.store.dispatch( actions.borrar ({id: this.todo.id }))
   }
 }

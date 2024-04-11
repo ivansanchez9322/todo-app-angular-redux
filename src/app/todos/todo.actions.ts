@@ -12,3 +12,18 @@ export const toggle = createAction(
 );
 
 
+export const editar = createAction(
+    '[TODO] editar Todo',
+    props<{ id: number, texto: string }>()
+);
+
+
+export const borrar = createAction(
+    '[TODO] borrar Todo',
+    props<{ id: number }>()
+);
+
+export const borrarTodos = createAction(
+    '[TODO] borrarTodos Todo',
+    props<{ value: boolean }>()
+);
