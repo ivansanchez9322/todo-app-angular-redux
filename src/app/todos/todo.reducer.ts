@@ -54,6 +54,9 @@ export const todoReducer = createReducer(
     (state, { id }) =>
       state.filter(todo => todo.id !== id)),
 
+  //Verificar que puedas viajar enel tiempo y reconstruirlo
+  // Es prueba de que se creo un nuevo estado o que solo se muto
+  // importante evitar las mutaciones
   on(actions.borrarTodos, (state, { value }) => {
     return state.map(todo => {
       return {
