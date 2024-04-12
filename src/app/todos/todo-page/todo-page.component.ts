@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../app.state';
+import { AppState } from '../../app.reducer';
 import { borrarTodos } from '../todo.actions';
 
 @Component({

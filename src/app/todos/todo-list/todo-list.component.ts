@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from '../models/todo.model';
-import { AppState } from '../../app.state';
+import { AppState } from '../../app.reducer';
 import { Store } from '@ngrx/store';
 
 @Component({
