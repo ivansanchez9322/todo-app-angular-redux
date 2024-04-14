@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 //NGRX
 import { StoreModule } from '@ngrx/store';
+import { FiltroPipe } from './filtro.pipe';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { StoreModule } from '@ngrx/store';
     TodoFooterComponent,
     TodoItemComponent,
     TodoListComponent,
-    TodoPageComponent
+    TodoPageComponent,
+    FiltroPipe
   ],
   imports: [
     CommonModule,

@@ -19,6 +19,9 @@ export const todoReducer = createReducer(
   // no se puede hacer un simple push por que se puede mutar
   on(actions.crear, (state, { texto }) => [...state, new Todo(texto)]),
 
+
+  on(actions.limpiarTodo, state => state.filter( todo=> !todo.completado)),
+
   on(actions.toggle, (state, { id }) => {
     return state.map(todo => {
 
